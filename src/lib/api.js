@@ -1,91 +1,74 @@
-import axios from 'axios'
-
 /**
- * API base URL resolution:
+ * Simulated API layer for VA Studio.
  *
- * In development, Vite proxies /api/* → http://localhost:5112/api/*
- * so we use a relative path "/api/v1" to avoid CORS issues.
- *
- * In production, set VITE_API_URL to the full backend URL.
+ * All calls are simulated locally — no axios, no backend required.
+ * Each API returns a Promise that resolves after a short delay
+ * to mimic real network latency.
  */
-const API_URL = import.meta.env.VITE_API_URL || '/api/v1'
 
-/**
- * Axios instance pre-configured for the VA Studio backend.
- * Public-first: no auth token required for core endpoints.
- */
-const api = axios.create({
-  baseURL: API_URL,
-  headers: { 'Content-Type': 'application/json' },
-})
+const delay = (ms = 300) => new Promise((r) => setTimeout(r, ms))
 
-// ── Health API ────────────────────────────────────────────
-//
-// The health routes live under the /api/v1 prefix (loaded by service_loader).
-// Actual endpoints: GET /api/v1/health, GET /api/v1/health/ready
+const simResponse = (data) => delay(150 + Math.random() * 200).then(() => ({ data }))
+
+// ── Health API (simulated) ────────────────────────────────
 
 export const healthApi = {
-  check: () => api.get('/health'),
-  ready: () => api.get('/health/ready'),
+  check: () =>
+    simResponse({
+      app: 'VA Studio Backend',
+      version: '1.0.0',
+      status: 'healthy',
+      environment: 'development',
+    }),
+  ready: () =>
+    simResponse({
+      status: 'ready',
+      version: '1.0.0',
+      checks: { database: true, redis: true },
+    }),
 }
 
-// ── Templates API (Public) ────────────────────────────────
+// ── Templates API (simulated) ─────────────────────────────
 
 export const templatesApi = {
-  list: () => api.get('/templates/'),
-  get: (id) => api.get(`/templates/${id}`),
-  categories: () => api.get('/templates/categories'),
-  preview: (id) => api.get(`/templates/${id}/preview`),
+  list: () => simResponse([]),
+  get: (id) => simResponse({ id, name: id }),
+  categories: () => simResponse([]),
+  preview: (id) => simResponse({ id }),
 }
 
-// ── Chat API (Public) ─────────────────────────────────────
+// ── Chat API (simulated) ──────────────────────────────────
 
 export const chatApi = {
-  createSession: () =>
-    api.post('/chat/session'),
-
-  sendMessage: (message, sessionId = null, templateContext = null) =>
-    api.post('/chat/message', {
-      message,
-      session_id: sessionId,
-      template_context: templateContext,
-    }),
-
-  getSession: (sessionId) =>
-    api.get(`/chat/session/${sessionId}`),
-
-  getHistory: (sessionId) =>
-    api.get(`/chat/session/${sessionId}/history`),
-
-  submitTemplateRequest: (data) =>
-    api.post('/chat/template-request', data),
-
-  getRequestStatus: (requestId) =>
-    api.get(`/chat/template-request/${requestId}`),
+  createSession: () => simResponse({ session_id: crypto.randomUUID() }),
+  sendMessage: (message) =>
+    simResponse({ reply: `Simulated response to: "${message}"` }),
+  getSession: (sessionId) => simResponse({ session_id: sessionId }),
+  getHistory: () => simResponse({ messages: [] }),
+  submitTemplateRequest: () => simResponse({ request_id: crypto.randomUUID(), status: 'pending' }),
+  getRequestStatus: (requestId) => simResponse({ request_id: requestId, status: 'completed' }),
 }
 
-// ── Projects API ──────────────────────────────────────────
+// ── Projects API (simulated) ──────────────────────────────
 
 export const projectsApi = {
-  list: () => api.get('/projects/'),
-  get: (id) => api.get(`/projects/${id}`),
-  create: (data) => api.post('/projects/', data),
-  update: (id, data) => api.patch(`/projects/${id}`, data),
-  delete: (id) => api.delete(`/projects/${id}`),
-  getPublic: () => api.get('/projects/public'),
+  list: () => simResponse([]),
+  get: (id) => simResponse({ id }),
+  create: (data) => simResponse({ id: crypto.randomUUID(), ...data }),
+  update: (id, data) => simResponse({ id, ...data }),
+  delete: (id) => simResponse({ id, deleted: true }),
+  getPublic: () => simResponse([]),
 }
 
-// ── AI / Chat API (Authenticated) ─────────────────────────
+// ── AI / Chat API (simulated) ─────────────────────────────
 
 export const aiApi = {
-  chat: (message, agent = 'default', conversationId = null) =>
-    api.post('/ai/chat', { message, agent, conversation_id: conversationId }),
-
-  agents: () => api.get('/ai/agents'),
-
-  status: () => api.get('/ai/status'),
-
-  deleteConversation: (id) => api.delete(`/ai/conversations/${id}`),
+  chat: (message) =>
+    simResponse({ reply: `Simulated AI response to: "${message}"` }),
+  agents: () => simResponse([]),
+  status: () => simResponse({ status: 'available' }),
+  deleteConversation: (id) => simResponse({ id, deleted: true }),
 }
 
+const api = { healthApi, templatesApi, chatApi, projectsApi, aiApi }
 export default api

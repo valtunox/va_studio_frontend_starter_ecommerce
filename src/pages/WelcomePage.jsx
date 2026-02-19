@@ -64,6 +64,11 @@ import {
   Calculator,
   BadgeDollarSign,
   Megaphone,
+  Bot,
+  LogIn,
+  UserPlus,
+  Compass,
+  Target,
 } from 'lucide-react'
 
 /* ------------------------------------------------------------------ */
@@ -71,6 +76,21 @@ import {
 /* ------------------------------------------------------------------ */
 
 const TEMPLATES = [
+  {
+    id: 'aiassistant',
+    name: 'AI Assistant',
+    description: 'General-purpose AI chat assistant with multiple agents, code generation, web search simulation, and modern ChatGPT-style UI.',
+    category: 'business',
+    icon: Bot,
+    color: 'from-indigo-500 to-purple-600',
+    bgLight: 'bg-indigo-50',
+    textColor: 'text-indigo-700',
+    borderColor: 'border-indigo-200',
+    tags: ['AI Chat', 'Agents', 'Code Gen', 'Research'],
+    isPremium: false,
+    rating: 4.9,
+    previews: 3580,
+  },
   {
     id: 'ecommerce',
     name: 'E-Commerce',
@@ -326,6 +346,66 @@ const TEMPLATES = [
     rating: 4.8,
     previews: 2210,
   },
+  {
+    id: 'login',
+    name: 'Login Page',
+    description: 'Beautiful split-screen login with social auth, dark/light toggle, email form, and responsive mobile layout.',
+    category: 'auth',
+    icon: LogIn,
+    color: 'from-indigo-500 to-blue-600',
+    bgLight: 'bg-indigo-50',
+    textColor: 'text-indigo-700',
+    borderColor: 'border-indigo-200',
+    tags: ['Auth', 'Login', 'Social', 'Form'],
+    isPremium: false,
+    rating: 4.9,
+    previews: 3420,
+  },
+  {
+    id: 'register',
+    name: 'Registration Page',
+    description: 'Registration form with password strength indicator, validation, social signup, terms acceptance, and split-screen branding.',
+    category: 'auth',
+    icon: UserPlus,
+    color: 'from-violet-500 to-purple-600',
+    bgLight: 'bg-violet-50',
+    textColor: 'text-violet-700',
+    borderColor: 'border-violet-200',
+    tags: ['Auth', 'Register', 'Signup', 'Form'],
+    isPremium: false,
+    rating: 4.9,
+    previews: 2890,
+  },
+  {
+    id: 'onboarding',
+    name: 'Onboarding Wizard',
+    description: 'Multi-step onboarding flow with progress bar, profile setup, company info, preferences, and completion celebration.',
+    category: 'auth',
+    icon: Compass,
+    color: 'from-indigo-500 to-violet-600',
+    bgLight: 'bg-indigo-50',
+    textColor: 'text-indigo-700',
+    borderColor: 'border-indigo-200',
+    tags: ['Onboarding', 'Wizard', 'Steps', 'Setup'],
+    isPremium: false,
+    rating: 4.8,
+    previews: 2150,
+  },
+  {
+    id: 'leads',
+    name: 'Leads Manager',
+    description: 'Lead management dashboard with scoring, source tracking, conversion funnel, pipeline visualization, and activity feed.',
+    category: 'business',
+    icon: Target,
+    color: 'from-blue-500 to-cyan-600',
+    bgLight: 'bg-blue-50',
+    textColor: 'text-blue-700',
+    borderColor: 'border-blue-200',
+    tags: ['Leads', 'Pipeline', 'Scoring', 'CRM'],
+    isPremium: true,
+    rating: 4.9,
+    previews: 1870,
+  },
 ]
 
 const CATEGORIES = [
@@ -338,6 +418,7 @@ const CATEGORIES = [
   { id: 'social', label: 'Social', icon: MessageCircle },
   { id: 'health', label: 'Health & Fitness', icon: HeartPulse },
   { id: 'finance', label: 'Finance', icon: Landmark },
+  { id: 'auth', label: 'Auth & Onboarding', icon: LogIn },
 ]
 
 const FEATURES = [
@@ -364,7 +445,7 @@ const FEATURES = [
 ]
 
 const STEPS = [
-  { step: '01', title: 'Browse Templates', description: 'Explore our curated collection of 17 production-ready templates.' },
+  { step: '01', title: 'Browse Templates', description: 'Explore our curated collection of 22 production-ready templates.' },
   { step: '02', title: 'Live Preview', description: 'Click any template to see it running live in your browser.' },
   { step: '03', title: 'Chat with AI', description: 'Tell our AI what you need — it recommends the perfect template.' },
   { step: '04', title: 'Request & Deploy', description: 'Submit a customization request and get your tailored template.' },
@@ -400,7 +481,7 @@ export default function WelcomePage() {
           <span className="inline-flex items-center gap-2">
             <Sparkles className="w-4 h-4" />
             <span className="font-medium">VA Studio v1.0</span>
-            <span className="hidden sm:inline">— 17 production-ready templates, zero login required.</span>
+            <span className="hidden sm:inline">— 22 production-ready templates, zero login required.</span>
             <a href="#templates" className="underline underline-offset-2 hover:text-indigo-200 ml-1">
               Explore now →
             </a>
@@ -488,7 +569,7 @@ export default function WelcomePage() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Browse 17 beautifully crafted React templates — from e-commerce to finance & marketing.
+              Browse 22 beautifully crafted React templates — from AI assistants to finance & marketing.
               Preview live, chat with AI, and deploy your next project in minutes.
             </p>
 
@@ -513,7 +594,7 @@ export default function WelcomePage() {
             {/* Stats */}
             <div className="flex items-center justify-center gap-8 sm:gap-12 text-center">
               {[
-                { value: '17', label: 'Templates' },
+                { value: '22', label: 'Templates' },
                 { value: '100%', label: 'Free & Open' },
                 { value: '0', label: 'Login Required' },
                 { value: 'AI', label: 'Powered Chat' },
@@ -680,9 +761,8 @@ export default function WelcomePage() {
               <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
                 Ready to Build Something Amazing?
               </h2>
-              <p className="text-lg text-indigo-100 max-w-xl mx-auto mb-8">
-                Pick a template, preview it live, and start building your next project today.
-                No account needed — just start creating.
+              <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">
+                Pick a template, preview it live, and start building your next project today. All 22 templates are loaded dynamically via React.lazy + code-splitting.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a

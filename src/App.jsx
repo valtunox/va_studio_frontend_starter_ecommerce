@@ -35,6 +35,7 @@ import WelcomePage from './pages/WelcomePage'
 /* ------------------------------------------------------------------ */
 
 const templates = {
+  aiassistant: lazy(() => import('../templates/aiassistant/App.jsx')),
   ecommerce: lazy(() => import('../templates/ecommerce/App.jsx')),
   saas: lazy(() => import('../templates/saas/App.jsx')),
   portfolio: lazy(() => import('../templates/portfolio/App.jsx')),
@@ -52,6 +53,10 @@ const templates = {
   accounting: lazy(() => import('../templates/accounting/App.jsx')),
   sales: lazy(() => import('../templates/sales/App.jsx')),
   marketing: lazy(() => import('../templates/marketing/App.jsx')),
+  login: lazy(() => import('../templates/login/App.jsx')),
+  register: lazy(() => import('../templates/register/App.jsx')),
+  onboarding: lazy(() => import('../templates/onboarding/App.jsx')),
+  leads: lazy(() => import('../templates/leads/App.jsx')),
 }
 
 /* ------------------------------------------------------------------ */

@@ -3,7 +3,9 @@ import {
   Menu, X, Check, ArrowRight, Zap, Shield, BarChart3, Globe, Users, Clock,
   Star, ChevronDown, ChevronUp, Play, Sparkles, Layers, Lock, Cpu,
   Mail, Phone, MapPin, Github, Twitter, Linkedin, Youtube,
-  CheckCircle2, ArrowUpRight, Rocket, Target, TrendingUp
+  CheckCircle2, ArrowUpRight, Rocket, Target, TrendingUp,
+  MessageSquare, Headphones, BookOpen, Code2, Database, Cloud,
+  Workflow, GitBranch, Send
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -85,6 +87,47 @@ const stats = [
 ]
 
 const logos = ['Stripe', 'Vercel', 'Supabase', 'Linear', 'Notion', 'Figma', 'Slack', 'Discord']
+
+const howItWorks = [
+  { step: '01', title: 'Choose Your Template', desc: 'Browse our library of 20+ production-ready templates. Filter by category, features, or tech stack.', icon: Layers },
+  { step: '02', title: 'Customize & Configure', desc: 'Use our visual editor and AI assistant to customize colors, content, and features to match your brand.', icon: Code2 },
+  { step: '03', title: 'Deploy & Scale', desc: 'One-click deploy to your preferred hosting. Built-in CI/CD, monitoring, and auto-scaling included.', icon: Rocket },
+]
+
+const integrationPartners = [
+  { name: 'AWS', category: 'Cloud' },
+  { name: 'Google Cloud', category: 'Cloud' },
+  { name: 'Stripe', category: 'Payments' },
+  { name: 'Twilio', category: 'Communications' },
+  { name: 'SendGrid', category: 'Email' },
+  { name: 'Datadog', category: 'Monitoring' },
+  { name: 'Auth0', category: 'Auth' },
+  { name: 'Cloudflare', category: 'CDN' },
+  { name: 'MongoDB', category: 'Database' },
+  { name: 'Redis', category: 'Cache' },
+  { name: 'Elasticsearch', category: 'Search' },
+  { name: 'RabbitMQ', category: 'Queue' },
+]
+
+const comparisonFeatures = [
+  { feature: 'Projects', starter: '3', pro: 'Unlimited', enterprise: 'Unlimited' },
+  { feature: 'API Calls / month', starter: '1,000', pro: '100,000', enterprise: 'Unlimited' },
+  { feature: 'Team Members', starter: '1', pro: '10', enterprise: 'Unlimited' },
+  { feature: 'Custom Domains', starter: false, pro: true, enterprise: true },
+  { feature: 'SSO / SAML', starter: false, pro: true, enterprise: true },
+  { feature: 'Priority Support', starter: false, pro: true, enterprise: true },
+  { feature: 'SLA Guarantee', starter: false, pro: false, enterprise: true },
+  { feature: 'Dedicated Manager', starter: false, pro: false, enterprise: true },
+  { feature: 'On-Premise Deploy', starter: false, pro: false, enterprise: true },
+  { feature: 'Audit Logs', starter: false, pro: false, enterprise: true },
+]
+
+const teamFeatures = [
+  { icon: Users, title: 'Shared Workspaces', desc: 'Collaborate in real-time with your entire team on shared projects and templates.' },
+  { icon: GitBranch, title: 'Version Control', desc: 'Built-in branching and merging so your team can work on features in parallel.' },
+  { icon: MessageSquare, title: 'Inline Comments', desc: 'Leave feedback directly on components. Resolve threads and track decisions.' },
+  { icon: Workflow, title: 'Approval Workflows', desc: 'Set up review and approval flows before changes go live to production.' },
+]
 
 /* ------------------------------------------------------------------ */
 /*  COMPONENTS                                                         */
@@ -334,6 +377,179 @@ function App() {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider">How It Works</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display mt-3">Get started in 3 simple steps</h2>
+            <p className="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">From idea to production in minutes, not months.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {howItWorks.map(({ step, title, desc, icon: Icon }) => (
+              <div key={step} className="relative text-center">
+                <div className="w-16 h-16 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-6 relative">
+                  <Icon className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+                  <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">{step}</span>
+                </div>
+                <h3 className="text-lg font-semibold font-display mb-2">{title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Built for Teams */}
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider">Collaboration</span>
+              <h2 className="text-3xl md:text-4xl font-bold font-display mt-3 mb-6">Built for modern teams</h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                Whether your team is 5 or 500, our platform scales with you. Real-time collaboration, role-based access, and enterprise-grade security come standard.
+              </p>
+              <div className="space-y-6">
+                {teamFeatures.map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="flex gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">{title}</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/10 border border-slate-200 dark:border-slate-800">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+                  alt="Team collaboration"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Comparison */}
+      <section className="py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider">Compare Plans</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display mt-3">Feature comparison</h2>
+            <p className="text-slate-600 dark:text-slate-400 mt-4">See exactly what you get with each plan</p>
+          </div>
+          <Card className="border-slate-200 dark:border-slate-800 overflow-hidden">
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                      <th className="text-left py-4 px-6 font-medium text-slate-500 text-xs uppercase tracking-wider w-1/4">Feature</th>
+                      <th className="text-center py-4 px-4 font-medium text-slate-500 text-xs uppercase tracking-wider">Starter</th>
+                      <th className="text-center py-4 px-4 font-medium text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400">Professional</th>
+                      <th className="text-center py-4 px-4 font-medium text-slate-500 text-xs uppercase tracking-wider">Enterprise</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonFeatures.map((row) => (
+                      <tr key={row.feature} className="border-b border-slate-100 dark:border-slate-800/50">
+                        <td className="py-3.5 px-6 font-medium text-slate-900 dark:text-white">{row.feature}</td>
+                        {['starter', 'pro', 'enterprise'].map((plan) => (
+                          <td key={plan} className={`py-3.5 px-4 text-center ${plan === 'pro' ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''}`}>
+                            {typeof row[plan] === 'boolean' ? (
+                              row[plan] ? (
+                                <Check className="w-5 h-5 text-blue-600 dark:text-blue-400 mx-auto" />
+                              ) : (
+                                <span className="text-slate-300 dark:text-slate-700">—</span>
+                              )
+                            ) : (
+                              <span className={`font-medium ${plan === 'pro' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'}`}>{row[plan]}</span>
+                            )}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider">Integrations</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display mt-3">Works with your stack</h2>
+            <p className="text-slate-600 dark:text-slate-400 mt-4">Seamlessly connect with the tools you already use</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {integrationPartners.map((partner) => (
+              <div
+                key={partner.name}
+                className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-md transition-all text-center group"
+              >
+                <p className="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{partner.name}</p>
+                <p className="text-xs text-slate-500 mt-1">{partner.category}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact / Demo */}
+      <section className="py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider">Contact</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display mt-3">Request a demo</h2>
+            <p className="text-slate-600 dark:text-slate-400 mt-4">See how LaunchPad can accelerate your team's development</p>
+          </div>
+          <Card className="border-slate-200 dark:border-slate-800">
+            <CardContent className="p-8">
+              <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">First name</label>
+                  <Input placeholder="John" className="h-11 bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Last name</label>
+                  <Input placeholder="Doe" className="h-11 bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg" />
+                </div>
+              </div>
+              <div className="space-y-2 mb-4">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Work email</label>
+                <Input type="email" placeholder="john@company.com" className="h-11 bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg" />
+              </div>
+              <div className="space-y-2 mb-4">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Company</label>
+                <Input placeholder="Acme Inc." className="h-11 bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg" />
+              </div>
+              <div className="space-y-2 mb-6">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Message (optional)</label>
+                <textarea
+                  placeholder="Tell us about your project..."
+                  rows={4}
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                />
+              </div>
+              <Button className="w-full h-11 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium">
+                <Send className="w-4 h-4 mr-2" /> Request Demo
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -367,6 +583,10 @@ function App() {
                 <span className="text-xl font-bold text-white font-display">LaunchPad</span>
               </div>
               <p className="text-sm leading-relaxed mb-4">The modern platform for building and shipping software at scale.</p>
+              <div className="flex gap-2 mb-4">
+                <Input placeholder="Your email" className="h-9 bg-white/10 border-white/20 text-white placeholder:text-slate-400 rounded-lg text-sm flex-1" />
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white h-9 px-4 rounded-lg text-sm shrink-0">Subscribe</Button>
+              </div>
               <div className="flex gap-3">
                 {[Github, Twitter, Linkedin, Youtube].map((Icon, i) => (
                   <a key={i} href="#" className="p-2 rounded-lg bg-white/5 hover:bg-blue-600 hover:text-white transition-colors">
