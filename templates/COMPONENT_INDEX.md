@@ -36,12 +36,6 @@ For AI/vibe coding: discover existing components to reuse instead of recreating.
 | `src/App.jsx` | Main layout – Hero, About, Skills, Projects, Contact |
 | Uses | Lucide (Menu, Github, Linkedin, Mail), Headless UI (Menu), Button, Card |
 
-## SaaS Template
-
-| Path | Description |
-|------|-------------|
-| `src/App.jsx` | Dashboard layout – Sidebar, Header, Stats cards, Data table |
-| Uses | Lucide (LayoutDashboard, Users, Settings, BarChart3, etc.), Headless UI (Menu), Button, Card, Input |
 
 ## E-commerce Template
 
