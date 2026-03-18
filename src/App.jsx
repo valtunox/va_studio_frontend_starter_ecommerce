@@ -19,16 +19,11 @@
  * @see {@link ./lib/api.js} for backend API client
  */
 
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { createBrowserRouter, RouterProvider, useParams, Link } from 'react-router-dom'
 import { BackendStatusProvider, useBackendContext } from './context/BackendStatusContext'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
-
-/* ------------------------------------------------------------------ */
-/*  Default E-commerce Template (main app interface)                   */
-/* ------------------------------------------------------------------ */
-
-const EcommerceApp = lazy(() => import('../templates/ecommerce/App.jsx'))
+import { TemplateSwitcher } from './components/shared/TemplateSwitcher'
 
 /* ------------------------------------------------------------------ */
 /*  Lazy-loaded template components (code-split per template)          */
@@ -126,12 +121,16 @@ function ConnectivityBanner() {
 
 function HomePage() {
   const { isDark } = useTheme()
+  const [activeTemplate, setActiveTemplate] = useState('ecommerce')
+  const ActiveComponent = templates[activeTemplate]
+
   return (
     <div className={isDark ? 'dark' : ''}>
       <ConnectivityBanner />
       <Suspense fallback={<TemplateLoader />}>
-        <EcommerceApp />
+        <ActiveComponent key={activeTemplate} />
       </Suspense>
+      <TemplateSwitcher activeTemplate={activeTemplate} onSelect={setActiveTemplate} />
     </div>
   )
 }
