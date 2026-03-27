@@ -12,7 +12,7 @@
 # env:
 #   NODE_VERSION: '20'
 #   AWS_REGION: 'us-east-1'
-#   S3_BUCKET_URL: 's3://devrecruitagent.com'
+#   S3_BUCKET_URL: 's3://testdomain.com'
 #   CLOUDFRONT_DISTRIBUTION_ID: 'E2MUA4CDGYQAXN'
 #   CLOUDFRONT_DOMAIN: 'd3qbao5sh7zc4o.cloudfront.net'
 
