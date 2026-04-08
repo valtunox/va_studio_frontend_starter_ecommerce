@@ -78,6 +78,11 @@ const FALLBACK_MODELS: AvailableModel[] = [
   { id: 'claude-sonnet-4-5', name: 'Claude Sonnet 4.5', provider: 'anthropic', status: 'available', category: 'general' },
   { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', provider: 'gemini', status: 'available', category: 'fast' },
   { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash', provider: 'gemini', status: 'available', category: 'fast' },
+  // Ollama local models
+  { id: 'llama3.2:latest', name: 'Llama 3.2 (Local)', provider: 'ollama', status: 'available', category: 'local' },
+  { id: 'llama3.3:latest', name: 'Llama 3.3 (Local)', provider: 'ollama', status: 'available', category: 'local' },
+  { id: 'gemma4:e4b', name: 'Gemma 4 E4B (Local)', provider: 'ollama', status: 'available', category: 'local' },
+  { id: 'qwen2.5:7b', name: 'Qwen 2.5 7B (Local)', provider: 'ollama', status: 'available', category: 'local' },
 ]
 
 interface AIAssistantProps {

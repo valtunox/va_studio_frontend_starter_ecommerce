@@ -12,18 +12,24 @@ export default defineConfig({
   build: {
     outDir: 'build',
   },
+  // Browser loads the app on `server.port` (Studio may override via CLI --port).
+  // JSON/fetch calls to `/api/*` are forwarded to FastAPI — NOT to the Vite port.
   server: {
-    port: 3008,
+    port: 3011,
     strictPort: true,
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
     proxy: {
       '/api': {
-        target: 'http://localhost:5112',
+        target: 'http://127.0.0.1:5112',
         changeOrigin: true,
         secure: false,
       },
     },
   },
   preview: {
-    port: 3008,
+    port: 3011,
   },
 })
